@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Card_game
 {
-    public class CardGame
+    class CardGame
     {
         static void Main(string[] args)
         {
@@ -14,7 +14,8 @@ namespace Card_game
             Game game = new Game(2);
         }
     }
-    public class Game
+
+    class Game
     {
         List<Player> players;
         int cur_player;
@@ -28,12 +29,12 @@ namespace Card_game
                 players.Add(player);
             }
             cur_player = 0;
-            show();
+            show_players();
 
             start();
         }
 
-        void show()
+        void show_players()
         {
             Console.WriteLine("Game show");
             for (int i = 0; i < players.Count; ++i)
@@ -44,11 +45,13 @@ namespace Card_game
 
         void start()
         {
-            Console.WriteLine("Game");
+            Console.WriteLine("Game start");
             int round = 0;
             while (round < 10)
             {
-                players[cur_player].show();
+                //players[cur_player].show();
+                Console.Write("Player: ");
+                Console.WriteLine(cur_player);
                 cur_player += 1;
                 cur_player %= 2;
 
@@ -57,19 +60,40 @@ namespace Card_game
         }
     }
 
-    public class Player
+    class Player
     {
         int id;
+        int hp;
+        int damage;
+        int healing;
 
         public Player(int id)
         {
             this.id = id;
+            Random random = new Random();
+            hp = 10 + random.Next(10);
+            damage = 1 + random.Next(5);
+            healing = random.Next(5);
         }
 
         public void show()
         {
             Console.Write("Player: ");
             Console.WriteLine(id);
+            Console.Write("HP: ");
+            Console.WriteLine(hp);
+            Console.Write("damage: ");
+            Console.WriteLine(damage);
+            Console.Write("healing: ");
+            Console.WriteLine(healing);
+        }
+    }
+
+    class Actions
+    {
+        void attack()
+        {
+
         }
     }
 }
