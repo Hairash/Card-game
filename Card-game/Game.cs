@@ -20,6 +20,7 @@ namespace Card_game
     {
         List<Player> players;
         int cur_player_id;
+        int cards_per_round;
 
         public Game(int num_of_players)
         {
@@ -30,6 +31,7 @@ namespace Card_game
                 players.Add(player);
             }
             cur_player_id = 0;
+            cards_per_round = 3;
             show_players();
 
             start();
@@ -58,9 +60,20 @@ namespace Card_game
 
                 int another_player_id = (cur_player_id + 1) % 2;
 
-                Card card = card_gen.new_card(players[cur_player_id], players[another_player_id]);
-                card.show();
-                card.play();
+                // generate some cards for choice
+                Console.WriteLine("Choose card: ");
+                List<Card> current_cards = new List<Card>();
+                for (int i = 0; i < cards_per_round; ++i)
+                {
+                    Card card = card_gen.new_card(players[cur_player_id], players[another_player_id]);
+                    Console.Write($"{i}) ");
+                    card.show();
+                    current_cards.Add(card);
+                    //card.play();
+                }
+
+                int selected_card_id = Int32.Parse(Console.ReadLine());
+                current_cards[selected_card_id].play();
 
                 //Console.WriteLine("Choose action: ");
                 //Console.WriteLine("0) Attack");
@@ -87,6 +100,8 @@ namespace Card_game
                 cur_player_id = another_player_id;
                 ++round;
             }
+
+            Console.WriteLine($"End of game. Player {(cur_player_id + 1) % 2} wins");
         }
 
         bool end_game()
