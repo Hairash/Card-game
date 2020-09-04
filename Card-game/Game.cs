@@ -36,7 +36,7 @@ namespace Card_game
 
         void show_players()
         {
-            Console.WriteLine("Game show");
+            //Console.WriteLine();
             for (int i = 0; i < players.Count; ++i)
             {
                 players[i].show();
@@ -45,16 +45,39 @@ namespace Card_game
 
         void start()
         {
-            Console.WriteLine("Game start");
+            Console.WriteLine(); Console.WriteLine("Game start");
             int round = 0;
             while (round < 10)
             {
+                Console.Write("Round: "); Console.WriteLine(round);
+                Console.WriteLine();
+                show_players();
                 //players[cur_player].show();
-                Console.Write("Player: ");
-                Console.WriteLine(cur_player);
-                cur_player += 1;
-                cur_player %= 2;
+                Console.Write("Player: "); Console.WriteLine(cur_player);
 
+                int another_player = (cur_player + 1) % 2;
+                Random random = new Random();
+                int action = random.Next(2);
+
+                switch (action) {
+                    case 0:
+                        Console.WriteLine("Attack");
+                        players[cur_player].actions.attack(players[another_player]);
+                        break;
+                    case 1:
+                        Console.WriteLine("Heal");
+                        players[cur_player].actions.heal();
+                        break;
+                }
+                Console.WriteLine();
+                Console.WriteLine("After action");
+                show_players();
+
+                Console.WriteLine();
+                
+                cur_player = another_player;
+                //cur_player += 1;
+                //cur_player %= 2;
                 ++round;
             }
         }
@@ -64,8 +87,10 @@ namespace Card_game
     {
         int id;
         int hp;
-        int damage;
+        int damage;        
         int healing;
+
+        public Actions actions;
 
         public Player(int id)
         {
@@ -74,6 +99,28 @@ namespace Card_game
             hp = 10 + random.Next(10);
             damage = 1 + random.Next(5);
             healing = random.Next(5);
+
+            actions = new Actions(this);
+        }
+
+        public int get_damage()
+        {
+            return damage;
+        }
+
+        public int get_healing()
+        {
+            return healing;
+        }
+
+        public void lose_hp(int n)
+        {
+            hp -= n;
+        }
+
+        public void add_hp(int n)
+        {
+            hp += n;
         }
 
         public void show()
@@ -91,9 +138,21 @@ namespace Card_game
 
     class Actions
     {
-        void attack()
-        {
+        Player self;
 
+        public Actions(Player self)
+        {
+            this.self = self;
+        }
+
+        public void attack(Player enemy)
+        {
+            enemy.lose_hp(self.get_damage());
+        }
+
+        public void heal()
+        {
+            self.add_hp(self.get_healing());
         }
     }
 }
