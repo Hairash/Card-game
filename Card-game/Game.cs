@@ -15,6 +15,7 @@ namespace Card_game
         }
     }
 
+
     class Game
     {
         List<Player> players;
@@ -46,15 +47,24 @@ namespace Card_game
         void start()
         {
             // Game cycle
-            Console.WriteLine(); Console.WriteLine("Game start");
+            Console.WriteLine("\nGame start");
+
+            int another_player = (cur_player + 1) % 2;
+
+            CardGenerator card_gen = new CardGenerator();
+            Card card = card_gen.new_card(players[cur_player], players[another_player]);
+            card.show();
+            card.play();
+
+            show_players();
+
             int round = 0;
             while (round < 10)
             {
-                Console.Write("Round: "); Console.WriteLine(round);
-                Console.WriteLine();
+                Console.WriteLine($"Round: {round}\n");
                 //show_players();
                 //players[cur_player].show();
-                Console.Write("Player: "); Console.WriteLine(cur_player);
+                Console.WriteLine($"Player: {cur_player}");
 
                 Console.WriteLine("Choose action: ");
                 Console.WriteLine("0) Attack");
@@ -63,7 +73,7 @@ namespace Card_game
 
                 //Random random = new Random();
                 //int action = random.Next(2);
-                int another_player = (cur_player + 1) % 2;
+                another_player = (cur_player + 1) % 2;
 
                 switch (action) {
                     case 0:
@@ -88,6 +98,7 @@ namespace Card_game
             }
         }
     }
+
 
     class Player
     {
@@ -131,16 +142,13 @@ namespace Card_game
 
         public void show()
         {
-            Console.Write("Player: ");
-            Console.WriteLine(id);
-            Console.Write("HP: ");
-            Console.WriteLine(hp);
-            Console.Write("damage: ");
-            Console.WriteLine(damage);
-            Console.Write("healing: ");
-            Console.WriteLine(healing);
+            Console.WriteLine($"Player: {id}");
+            Console.WriteLine($"HP: {hp}");
+            Console.WriteLine($"damage: {damage}");
+            Console.WriteLine($"healing: {healing}");
         }
     }
+
 
     class Actions
     {
