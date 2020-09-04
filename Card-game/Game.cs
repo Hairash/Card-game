@@ -45,19 +45,25 @@ namespace Card_game
 
         void start()
         {
+            // Game cycle
             Console.WriteLine(); Console.WriteLine("Game start");
             int round = 0;
             while (round < 10)
             {
                 Console.Write("Round: "); Console.WriteLine(round);
                 Console.WriteLine();
-                show_players();
+                //show_players();
                 //players[cur_player].show();
                 Console.Write("Player: "); Console.WriteLine(cur_player);
 
+                Console.WriteLine("Choose action: ");
+                Console.WriteLine("0) Attack");
+                Console.WriteLine("1) Heal");
+                int action = Int32.Parse(Console.ReadLine());
+
+                //Random random = new Random();
+                //int action = random.Next(2);
                 int another_player = (cur_player + 1) % 2;
-                Random random = new Random();
-                int action = random.Next(2);
 
                 switch (action) {
                     case 0:
