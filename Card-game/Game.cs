@@ -48,12 +48,11 @@ namespace Card_game
         {
             // Game cycle
             Console.WriteLine("\nGame start");
-            show_players();
 
             CardGenerator card_gen = new CardGenerator();
-            
+
             int round = 0;
-            while (round < 10)
+            while (!end_game())
             {
                 Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
 
@@ -68,7 +67,8 @@ namespace Card_game
                 //Console.WriteLine("1) Heal");
                 //int action = Int32.Parse(Console.ReadLine());
 
-                //switch (action) {
+                //switch (action)
+                //{
                 //    case 0:
                 //        Console.WriteLine("Attack");
                 //        players[cur_player].actions.attack(players[another_player]);
@@ -88,76 +88,14 @@ namespace Card_game
                 ++round;
             }
         }
-    }
 
-
-    class Player
-    {
-        int id;
-        int hp;
-        int damage;        
-        int healing;
-
-        public Actions actions;
-
-        public Player(int id)
+        bool end_game()
         {
-            this.id = id;
-            Random random = new Random();
-            hp = 10 + random.Next(10);
-            damage = 1 + random.Next(5);
-            healing = random.Next(5);
-
-            actions = new Actions(this);
-        }
-
-        public int get_damage()
-        {
-            return damage;
-        }
-
-        public int get_healing()
-        {
-            return healing;
-        }
-
-        public void lose_hp(int n)
-        {
-            hp -= n;
-        }
-
-        public void add_hp(int n)
-        {
-            hp += n;
-        }
-
-        public void show()
-        {
-            Console.WriteLine($"Player: {id}");
-            Console.WriteLine($"HP: {hp}");
-            Console.WriteLine($"damage: {damage}");
-            Console.WriteLine($"healing: {healing}");
-        }
-    }
-
-
-    class Actions
-    {
-        Player self;
-
-        public Actions(Player self)
-        {
-            this.self = self;
-        }
-
-        public void attack(Player enemy)
-        {
-            enemy.lose_hp(self.get_damage());
-        }
-
-        public void heal()
-        {
-            self.add_hp(self.get_healing());
+            for (int i = 0; i < players.Count; ++i)
+            {
+                if (players[i].get_hp() <= 0) { return true; };
+            }
+            return false;
         }
     }
 }
