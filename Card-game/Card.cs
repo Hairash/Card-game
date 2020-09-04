@@ -83,10 +83,5 @@ namespace Card_game
 
             return card;
         }
-
-        //public CardGenerator()
-        //{
-            
-        //}
     }
 }

@@ -19,7 +19,7 @@ namespace Card_game
     class Game
     {
         List<Player> players;
-        int cur_player;
+        int cur_player_id;
 
         public Game(int num_of_players)
         {
@@ -29,7 +29,7 @@ namespace Card_game
                 Player player = new Player(i);
                 players.Add(player);
             }
-            cur_player = 0;
+            cur_player_id = 0;
             show_players();
 
             start();
@@ -48,52 +48,43 @@ namespace Card_game
         {
             // Game cycle
             Console.WriteLine("\nGame start");
-
-            int another_player = (cur_player + 1) % 2;
-
-            CardGenerator card_gen = new CardGenerator();
-            Card card = card_gen.new_card(players[cur_player], players[another_player]);
-            card.show();
-            card.play();
-
             show_players();
 
+            CardGenerator card_gen = new CardGenerator();
+            
             int round = 0;
             while (round < 10)
             {
-                Console.WriteLine($"Round: {round}\n");
-                //show_players();
-                //players[cur_player].show();
-                Console.WriteLine($"Player: {cur_player}");
+                Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
 
-                Console.WriteLine("Choose action: ");
-                Console.WriteLine("0) Attack");
-                Console.WriteLine("1) Heal");
-                int action = Int32.Parse(Console.ReadLine());
+                int another_player_id = (cur_player_id + 1) % 2;
 
-                //Random random = new Random();
-                //int action = random.Next(2);
-                another_player = (cur_player + 1) % 2;
+                Card card = card_gen.new_card(players[cur_player_id], players[another_player_id]);
+                card.show();
+                card.play();
 
-                switch (action) {
-                    case 0:
-                        Console.WriteLine("Attack");
-                        players[cur_player].actions.attack(players[another_player]);
-                        break;
-                    case 1:
-                        Console.WriteLine("Heal");
-                        players[cur_player].actions.heal();
-                        break;
-                }
+                //Console.WriteLine("Choose action: ");
+                //Console.WriteLine("0) Attack");
+                //Console.WriteLine("1) Heal");
+                //int action = Int32.Parse(Console.ReadLine());
+
+                //switch (action) {
+                //    case 0:
+                //        Console.WriteLine("Attack");
+                //        players[cur_player].actions.attack(players[another_player]);
+                //        break;
+                //    case 1:
+                //        Console.WriteLine("Heal");
+                //        players[cur_player].actions.heal();
+                //        break;
+                //}
                 Console.WriteLine();
-                Console.WriteLine("After action");
+                Console.WriteLine("After playing card");
                 show_players();
 
                 Console.WriteLine();
                 
-                cur_player = another_player;
-                //cur_player += 1;
-                //cur_player %= 2;
+                cur_player_id = another_player_id;
                 ++round;
             }
         }
