@@ -5,7 +5,7 @@ namespace Card_game
 {
     class Player
     {
-        int id;
+        public int id;
         int hp;
         public List<Card> cards = new List<Card>();
         //int damage;

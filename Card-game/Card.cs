@@ -27,6 +27,7 @@ namespace Card_game
         override public void play(Player owner, Player opponent)
         {
             opponent.lose_hp(damage);
+            Console.WriteLine($"Player {opponent.id} losses {damage} hp");
         }
 
         override public void show()
@@ -48,6 +49,7 @@ namespace Card_game
         override public void play(Player owner, Player opponent)
         {
             owner.add_hp(healing);
+            Console.WriteLine($"Player {owner.id} gains {healing} hp");
         }
         
         override public void show()
