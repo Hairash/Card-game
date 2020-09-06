@@ -26,5 +26,11 @@ namespace Card_game
             cards.RemoveAt(0);
             return card;
         }
+
+        public bool is_empty()
+        {
+            if (cards.Count == 0) { return true; }
+            else { return false; }
+        }
     }    
 }

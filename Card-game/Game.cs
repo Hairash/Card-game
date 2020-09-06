@@ -21,7 +21,7 @@ namespace Card_game
     class Game
     {
         List<Player> players;
-        Deck deck = new Deck();
+        Deck deck = new Deck(30);
         int cur_player_id;
         int cards_per_round;
         
@@ -68,6 +68,7 @@ namespace Card_game
                 List<Card> current_cards = new List<Card>();
                 for (int i = 0; i < cards_per_round; ++i)
                 {
+                    if (deck.is_empty()) { break; }
                     Card card = deck.get_card();
                     Console.Write($"{i}) ");
                     card.show();
@@ -104,16 +105,31 @@ namespace Card_game
                 ++round;
             }
 
-            Console.WriteLine($"End of game. Player {(cur_player_id + 1) % 2} wins");
+            show_winner();            
         }
 
         bool end_game()
         {
+            if (deck.is_empty()) { return true; }
             for (int i = 0; i < players.Count; ++i)
             {
                 if (players[i].get_hp() <= 0) { return true; };
             }
             return false;
+        }
+
+        void show_winner()
+        {
+            Console.WriteLine("End of game");
+            bool winner_found = false;
+            for (int i = 0; i < players.Count; ++i)
+            {
+                if (players[i].get_hp() <= 0) {
+                    Console.WriteLine($"Player {(i + 1) % 2} wins");
+                    winner_found = true;
+                };
+            }
+            if (!winner_found) { Console.WriteLine("Draw"); }
         }
     }
 }
