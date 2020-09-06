@@ -23,18 +23,29 @@ namespace Card_game
         List<Player> players;
         Deck deck = new Deck(30);
         int cur_player_id;
-        int cards_per_round;
+        int cards_on_hand;
         
         public Game(int num_of_players)
         {
+            cards_on_hand = 3;
+
             players = new List<Player>();
             for (int i = 0; i < num_of_players; ++i)
             {
                 Player player = new Player(i);
+
+                // give start cards to each player
+                for (int j = 0; j < cards_on_hand; ++j)
+                {
+                    Card card = deck.get_card();
+                    player.add_card(card);
+                    //Console.WriteLine($"Num of cards: {player.cards.Count}");
+                }
+
                 players.Add(player);
             }
+
             cur_player_id = 0;
-            cards_per_round = 3;
             show_players();
 
             start();
@@ -61,23 +72,29 @@ namespace Card_game
             {
                 Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
 
+                Player cur_player = players[cur_player_id];
                 int another_player_id = (cur_player_id + 1) % 2;
+                Player another_player = players[another_player_id];
 
-                // generate some cards for choice
-                Console.WriteLine("Choose card: ");
-                List<Card> current_cards = new List<Card>();
-                for (int i = 0; i < cards_per_round; ++i)
+                //if (deck.is_empty()) { break; }
+
+                Console.Write("New card: ");
+                Card card = deck.get_card();
+                card.show();
+                cur_player.add_card(card);
+
+                // play card from the hand
+                Console.WriteLine("Choose card from: ");
+                List<Card> current_cards = cur_player.cards;
+                for (int i = 0; i < current_cards.Count; ++i)
                 {
-                    if (deck.is_empty()) { break; }
-                    Card card = deck.get_card();
                     Console.Write($"{i}) ");
-                    card.show();
-                    current_cards.Add(card);
-                    //card.play();
+                    current_cards[i].show();
                 }
 
                 int selected_card_id = Int32.Parse(Console.ReadLine());
-                current_cards[selected_card_id].play(players[cur_player_id], players[another_player_id]);
+                current_cards[selected_card_id].play(cur_player, another_player);
+                cur_player.cards.RemoveAt(selected_card_id);
 
                 //Console.WriteLine("Choose action: ");
                 //Console.WriteLine("0) Attack");
@@ -110,7 +127,11 @@ namespace Card_game
 
         bool end_game()
         {
-            if (deck.is_empty()) { return true; }
+            if (deck.is_empty())
+            {
+                Console.WriteLine("Deck is over");
+                return true;
+            }
             for (int i = 0; i < players.Count; ++i)
             {
                 if (players[i].get_hp() <= 0) { return true; };

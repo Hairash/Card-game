@@ -11,7 +11,7 @@ namespace Card_game
             Console.WriteLine("Card base show");
         }
 
-        abstract public void play(Player owner, Player enemy);
+        abstract public void play(Player owner, Player opponent);
     }
 
     class Attack : Card
@@ -24,9 +24,9 @@ namespace Card_game
             damage = 1 + random.Next(5);
         }
 
-        override public void play(Player owner, Player enemy)
+        override public void play(Player owner, Player opponent)
         {
-            enemy.lose_hp(damage);
+            opponent.lose_hp(damage);
         }
 
         override public void show()
@@ -45,7 +45,7 @@ namespace Card_game
             healing = random.Next(5);
         }
 
-        override public void play(Player owner, Player enemy)
+        override public void play(Player owner, Player opponent)
         {
             owner.add_hp(healing);
         }
