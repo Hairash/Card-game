@@ -88,6 +88,35 @@ namespace Card_game
         }
     }
 
+    class Drop : Card
+    {
+        int amount;
+
+        public Drop()
+        {
+            Random random = new Random();
+            amount = 1 + random.Next(3);
+        }
+
+        override public void play(Player owner, Player opponent)
+        {
+            int i;
+            Random random = new Random();
+            for (i = 0; i < amount; ++i)
+            {
+                if (opponent.cards.Count == 0) { break; }                
+                var rand_id = random.Next(opponent.cards.Count);
+                opponent.cards.RemoveAt(rand_id);                
+            }
+            Console.WriteLine($"Player {opponent.id} drops {i} cards");
+        }
+
+        override public void show()
+        {
+            Console.WriteLine($"Drop card: {amount}");
+        }
+    }
+
     class CardGenerator
     {
         public Card new_card(Deck deck)
@@ -105,8 +134,11 @@ namespace Card_game
                 case int n when n < 8:
                     card = new Heal();
                     break;
-                default:
+                case int n when n < 9:
                     card = new Draw(deck);
+                    break;
+                default:
+                    card = new Drop();
                     break;
             }
 

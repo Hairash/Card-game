@@ -19,7 +19,7 @@ namespace Card_game
     class Game
     {
         List<Player> players;
-        Deck deck = new Deck(30);
+        Deck deck = new Deck(60);
         int cur_player_id;
         int cards_on_hand;
         
