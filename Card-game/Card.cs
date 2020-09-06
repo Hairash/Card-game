@@ -4,33 +4,27 @@ namespace Card_game
 {
     abstract class Card
     {
-        protected Player owner, enemy;
-
-        public Card(Player owner, Player enemy)
-        {
-            this.owner = owner;
-            this.enemy = enemy;
-        }
+        public Card() { }
 
         virtual public void show()
         {
             Console.WriteLine("Card base show");
         }
 
-        abstract public void play();
+        abstract public void play(Player owner, Player enemy);
     }
 
     class Attack : Card
     {
         int damage;
 
-        public Attack(Player owner, Player enemy): base(owner, enemy)
+        public Attack()
         {
             Random random = new Random();
             damage = 1 + random.Next(5);
         }
 
-        override public void play()
+        override public void play(Player owner, Player enemy)
         {
             enemy.lose_hp(damage);
         }
@@ -45,13 +39,13 @@ namespace Card_game
     {
         int healing;
 
-        public Heal(Player owner, Player enemy) : base(owner, enemy)
+        public Heal()
         {
             Random random = new Random();
             healing = random.Next(5);
         }
 
-        override public void play()
+        override public void play(Player owner, Player enemy)
         {
             owner.add_hp(healing);
         }
@@ -64,7 +58,7 @@ namespace Card_game
 
     class CardGenerator
     {
-        public Card new_card(Player owner, Player enemy)
+        public Card new_card()
         {
             Random random = new Random();
             int card_type = random.Next(2);
@@ -74,10 +68,10 @@ namespace Card_game
             switch (card_type)
             {
                 case 0:
-                    card = new Attack(owner, enemy);
+                    card = new Attack();
                     break;
                 default:
-                    card = new Heal(owner, enemy);
+                    card = new Heal();
                     break;
             }
 

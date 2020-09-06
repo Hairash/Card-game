@@ -15,13 +15,16 @@ namespace Card_game
         }
     }
 
-
+    // TODO: Refactor
+    // Make Card just a struct with different parameters (e.g. type)
+    // Add .play_card() method to the Game
     class Game
     {
         List<Player> players;
+        Deck deck = new Deck();
         int cur_player_id;
         int cards_per_round;
-
+        
         public Game(int num_of_players)
         {
             players = new List<Player>();
@@ -51,7 +54,7 @@ namespace Card_game
             // Game cycle
             Console.WriteLine("\nGame start");
 
-            CardGenerator card_gen = new CardGenerator();
+            //CardGenerator card_gen = new CardGenerator();
 
             int round = 0;
             while (!end_game())
@@ -65,7 +68,7 @@ namespace Card_game
                 List<Card> current_cards = new List<Card>();
                 for (int i = 0; i < cards_per_round; ++i)
                 {
-                    Card card = card_gen.new_card(players[cur_player_id], players[another_player_id]);
+                    Card card = deck.get_card();
                     Console.Write($"{i}) ");
                     card.show();
                     current_cards.Add(card);
@@ -73,7 +76,7 @@ namespace Card_game
                 }
 
                 int selected_card_id = Int32.Parse(Console.ReadLine());
-                current_cards[selected_card_id].play();
+                current_cards[selected_card_id].play(players[cur_player_id], players[another_player_id]);
 
                 //Console.WriteLine("Choose action: ");
                 //Console.WriteLine("0) Attack");
