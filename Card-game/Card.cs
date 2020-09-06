@@ -42,7 +42,7 @@ namespace Card_game
         public Heal()
         {
             Random random = new Random();
-            healing = random.Next(5);
+            healing = 1 + random.Next(4);
         }
 
         override public void play(Player owner, Player opponent)
