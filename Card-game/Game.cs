@@ -7,9 +7,7 @@ namespace Card_game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("------------------------");
+            Console.WriteLine("\n\n\n\n\n\n\n------------------------");
             Console.WriteLine("App start");
             Game game = new Game(2);
         }
@@ -71,7 +69,7 @@ namespace Card_game
             while (!end_game())
             {
                 Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
-
+                
                 Player cur_player = players[cur_player_id];
                 int another_player_id = (cur_player_id + 1) % 2;
                 Player another_player = players[another_player_id];
@@ -82,6 +80,7 @@ namespace Card_game
                 Card card = deck.get_card();
                 card.show();
                 cur_player.add_card(card);
+                Console.WriteLine($"Cards left: {deck.cards_left()}");
 
                 // play card from the hand
                 Console.WriteLine("Choose card from: ");

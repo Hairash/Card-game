@@ -58,22 +58,55 @@ namespace Card_game
         }
     }
 
+    class Draw : Card
+    {
+        Deck deck;
+        int amount;
+
+        public Draw(Deck deck)
+        {
+            this.deck = deck;
+            Random random = new Random();
+            amount = 2 + random.Next(3);
+        }
+
+        override public void play(Player owner, Player opponent)
+        {
+            int i;
+            for (i = 0; i < amount; ++i)
+            {
+                if (deck.is_empty()) { break; }
+                var card = deck.get_card();
+                owner.cards.Add(card);
+            }
+            Console.WriteLine($"Player {owner.id} draws {i} cards");
+        }
+
+        override public void show()
+        {
+            Console.WriteLine($"Draw card: {amount}");
+        }
+    }
+
     class CardGenerator
     {
-        public Card new_card()
+        public Card new_card(Deck deck)
         {
             Random random = new Random();
-            int card_type = random.Next(2);
+            int card_type = random.Next(10);
 
             Card card;
 
             switch (card_type)
             {
-                case 0:
+                case int n when n < 4:
                     card = new Attack();
                     break;
-                default:
+                case int n when n < 8:
                     card = new Heal();
+                    break;
+                default:
+                    card = new Draw(deck);
                     break;
             }
 

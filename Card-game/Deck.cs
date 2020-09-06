@@ -15,7 +15,7 @@ namespace Card_game
 
             for (int i = 0; i < num_of_cards; ++i)
             {
-                Card card = card_gen.new_card();
+                Card card = card_gen.new_card(this);
                 cards.Add(card);
             }
         }
@@ -31,6 +31,11 @@ namespace Card_game
         {
             if (cards.Count == 0) { return true; }
             else { return false; }
+        }
+
+        public int cards_left()
+        {
+            return cards.Count;
         }
     }    
 }
