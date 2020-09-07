@@ -58,16 +58,16 @@ namespace Card_game
             hp += n;
         }
 
-        public void show()
+        public string show()
         {
-            Console.WriteLine($"Player: {id}");
-            Console.WriteLine($"HP: {hp}");
+            string message = "";
+            message += $"Player: {id}\n";
+            message += $"HP: {hp}\n";
             foreach (Card card in cards)
             {
-                card.show();
+                message += card.show();
             }
-            //Console.WriteLine($"damage: {damage}");
-            //Console.WriteLine($"healing: {healing}");
+            return message;
         }
     }
 

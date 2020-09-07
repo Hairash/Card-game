@@ -11,13 +11,18 @@ namespace Card_game
     // Add .play_card() method to the Game
     class Game
     {
-        List<Player> players;
+        FormMain form;
+        public List<Player> players;
         Deck deck;
-        int cur_player_id;
+        public int cur_player_id;
         int cards_on_hand;
+        public int round;
 
-        public Game(int num_of_players = 2, int cards_in_deck = 60)
+        // current state
+
+        public Game(FormMain form, int num_of_players = 2, int cards_in_deck = 60)
         {
+            this.form = form;
             deck = new Deck(cards_in_deck);
             cards_on_hand = 3;
 
@@ -31,7 +36,6 @@ namespace Card_game
                 {
                     Card card = deck.get_card();
                     player.add_card(card);
-                    //Console.WriteLine($"Num of cards: {player.cards.Count}");
                 }
 
                 players.Add(player);
@@ -43,26 +47,37 @@ namespace Card_game
             start();
         }
 
-        void show_players()
+        public void AddLog(params string[] messages)
         {
-            //Console.WriteLine();
+            foreach (var m in messages)
+            {
+                form.txtLog.AppendText(m);
+            }
+            form.txtLog.AppendText(Environment.NewLine);
+        }
+
+        public void show_players()
+        {            
             for (int i = 0; i < players.Count; ++i)
             {
-                players[i].show();
+                AddLog(players[i].show());
             }
         }
 
         void start()
         {
             // Game cycle
-            Console.WriteLine("\nGame start");
+            AddLog("Game start");
 
-            //CardGenerator card_gen = new CardGenerator();
+            round = 0;
+            new_round(round);    
+        }
 
-            int round = 0;
-            while (!end_game())
+        public void new_round(int round)
+        {
+            if (!end_game())
             {
-                Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
+                AddLog($"Round: {round}. Player: {cur_player_id}");
 
                 Player cur_player = players[cur_player_id];
                 int another_player_id = (cur_player_id + 1) % 2;
@@ -70,59 +85,31 @@ namespace Card_game
 
                 //if (deck.is_empty()) { break; }
 
-                Console.Write("New card: ");
+                AddLog("New card: ");
                 Card card = deck.get_card();
-                card.show();
+                AddLog(card.show());
                 cur_player.add_card(card);
-                Console.WriteLine($"Cards left: {deck.cards_left()}");
+                AddLog($"Cards left: {deck.cards_left()}");
 
                 // play card from the hand
-                Console.WriteLine("Choose card from: ");
+                AddLog("Choose card from: ");
                 List<Card> current_cards = cur_player.cards;
                 for (int i = 0; i < current_cards.Count; ++i)
                 {
-                    Console.Write($"{i}) ");
-                    current_cards[i].show();
+                    AddLog($"{i}) ", current_cards[i].show());                    
                 }
-
-                int selected_card_id = Int32.Parse(Console.ReadLine());
-                current_cards[selected_card_id].play(cur_player, another_player);
-                cur_player.cards.RemoveAt(selected_card_id);
-
-                //Console.WriteLine("Choose action: ");
-                //Console.WriteLine("0) Attack");
-                //Console.WriteLine("1) Heal");
-                //int action = Int32.Parse(Console.ReadLine());
-
-                //switch (action)
-                //{
-                //    case 0:
-                //        Console.WriteLine("Attack");
-                //        players[cur_player].actions.attack(players[another_player]);
-                //        break;
-                //    case 1:
-                //        Console.WriteLine("Heal");
-                //        players[cur_player].actions.heal();
-                //        break;
-                //}
-                Console.WriteLine();
-                Console.WriteLine("After playing card");
-                show_players();
-
-                Console.WriteLine();
-
-                cur_player_id = another_player_id;
-                ++round;
             }
-
-            show_winner();
+            else
+            {
+                show_winner();
+            }
         }
 
         bool end_game()
         {
             if (deck.is_empty())
             {
-                Console.WriteLine("Deck is over");
+                AddLog("Deck is over");
                 return true;
             }
             for (int i = 0; i < players.Count; ++i)
@@ -134,17 +121,17 @@ namespace Card_game
 
         void show_winner()
         {
-            Console.WriteLine("End of game");
+            AddLog("End of game");
             bool winner_found = false;
             for (int i = 0; i < players.Count; ++i)
             {
                 if (players[i].get_hp() <= 0)
                 {
-                    Console.WriteLine($"Player {(i + 1) % 2} wins");
+                    AddLog($"Player {(i + 1) % 2} wins");
                     winner_found = true;
                 };
             }
-            if (!winner_found) { Console.WriteLine("Draw"); }
+            if (!winner_found) { AddLog("Draw"); }
         }
     }
 }

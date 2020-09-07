@@ -10,12 +10,12 @@ namespace Card_game
     {
         public Card() { }
 
-        virtual public void show()
+        virtual public string show()
         {
-            Console.WriteLine("Card base show");
+            return "Card base show";
         }
 
-        abstract public void play(Player owner, Player opponent);
+        abstract public string play(Player owner, Player opponent);
     }
 
     class Attack : Card
@@ -28,15 +28,15 @@ namespace Card_game
             damage = 1 + random.Next(5);
         }
 
-        override public void play(Player owner, Player opponent)
+        override public string play(Player owner, Player opponent)
         {
             opponent.lose_hp(damage);
-            Console.WriteLine($"Player {opponent.id} losses {damage} hp");
+            return $"Player {opponent.id} losses {damage} hp";
         }
 
-        override public void show()
+        override public string show()
         {
-            Console.WriteLine($"Attacking card: {damage}");
+            return $"Attacking card: {damage}";
         }
     }
 
@@ -50,15 +50,15 @@ namespace Card_game
             healing = 1 + random.Next(4);
         }
 
-        override public void play(Player owner, Player opponent)
+        override public string play(Player owner, Player opponent)
         {
             owner.add_hp(healing);
-            Console.WriteLine($"Player {owner.id} gains {healing} hp");
+            return $"Player {owner.id} gains {healing} hp";
         }
 
-        override public void show()
+        override public string show()
         {
-            Console.WriteLine($"Healing card: {healing}");
+            return $"Healing card: {healing}";
         }
     }
 
@@ -74,7 +74,7 @@ namespace Card_game
             amount = 2 + random.Next(3);
         }
 
-        override public void play(Player owner, Player opponent)
+        override public string play(Player owner, Player opponent)
         {
             int i;
             for (i = 0; i < amount; ++i)
@@ -83,12 +83,12 @@ namespace Card_game
                 var card = deck.get_card();
                 owner.cards.Add(card);
             }
-            Console.WriteLine($"Player {owner.id} draws {i} cards");
+            return $"Player {owner.id} draws {i} cards";
         }
 
-        override public void show()
+        override public string show()
         {
-            Console.WriteLine($"Draw card: {amount}");
+            return $"Draw card: {amount}";
         }
     }
 
@@ -102,7 +102,7 @@ namespace Card_game
             amount = 1 + random.Next(3);
         }
 
-        override public void play(Player owner, Player opponent)
+        override public string play(Player owner, Player opponent)
         {
             int i;
             Random random = new Random();
@@ -112,12 +112,12 @@ namespace Card_game
                 var rand_id = random.Next(opponent.cards.Count);
                 opponent.cards.RemoveAt(rand_id);
             }
-            Console.WriteLine($"Player {opponent.id} drops {i} cards");
+            return $"Player {opponent.id} drops {i} cards";
         }
 
-        override public void show()
+        override public string show()
         {
-            Console.WriteLine($"Drop card: {amount}");
+            return $"Drop card: {amount}";
         }
     }
 
