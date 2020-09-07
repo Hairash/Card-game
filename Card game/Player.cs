@@ -12,6 +12,7 @@ namespace Card_game
         int hp;
         public List<Card> cards = new List<Card>();
         public Actions actions;
+        Game game;
 
         // hp display
         System.Windows.Forms.Label lblHp;
@@ -22,8 +23,9 @@ namespace Card_game
         int card_x_shift = Card.size_x + 10;
         int card_y = 0;
 
-        public Player(System.Windows.Forms.Label lblHp, System.Windows.Forms.Panel pnlCards, int id)
+        public Player(Game game, System.Windows.Forms.Label lblHp, System.Windows.Forms.Panel pnlCards, int id)
         {
+            this.game = game;
             this.id = id;
             hp = 10 + GameRandom.random.Next(10);
 
@@ -55,12 +57,6 @@ namespace Card_game
 
         public void show()
         {
-            //string message = "";
-            //message += $"Player: {id}\n";
-            //message += $"HP: {hp}\n";
-            
-            //return message;
-
             // show hp
             lblHp.Text = hp.ToString();
 
@@ -70,18 +66,20 @@ namespace Card_game
             int y = card_y;
             foreach (var card in cards)
             {
-                show_card(card, x, y);
+                create_card_label(card, x, y);
                 x += card_x_shift;
             }
         }
 
-        void show_card(Card card, int x, int y)
+        void create_card_label(Card card, int x, int y)
         {
             var lblCard = new System.Windows.Forms.Label();
             lblCard.Text = card.get_info();
             lblCard.Location = new System.Drawing.Point(x, y);
             lblCard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             lblCard.Size = new System.Drawing.Size(Card.size_x, Card.size_y);
+            lblCard.Tag = card;
+            lblCard.Click += new System.EventHandler(game.lblCard_Click);
             pnlCards.Controls.Add(lblCard);
         }
     }
@@ -95,15 +93,5 @@ namespace Card_game
         {
             this.self = self;
         }
-
-        //public void attack(Player opponent)
-        //{
-        //    opponent.lose_hp(self.get_damage());
-        //}
-
-        //public void heal()
-        //{
-        //    self.add_hp(self.get_healing());
-        //}
     }
 }

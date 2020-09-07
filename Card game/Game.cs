@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Card_game
 {
@@ -30,7 +31,7 @@ namespace Card_game
             players = new List<Player>();
             for (int i = 0; i < num_of_players; ++i)
             {
-                Player player = new Player(labelsHP[i], panelsCards[i], i);
+                Player player = new Player(this, labelsHP[i], panelsCards[i], i);
 
                 // give start cards to each player
                 for (int j = 0; j < cards_on_hand; ++j)
@@ -67,7 +68,7 @@ namespace Card_game
 
         void start()
         {
-            // Game cycle
+            AddLog();
             AddLog("Game start");
 
             round = 0;
@@ -78,33 +79,42 @@ namespace Card_game
         {
             if (!end_game())
             {
+                AddLog();
                 AddLog($"Round: {round}. Player: {cur_player_id}");
 
                 Player cur_player = players[cur_player_id];
                 int another_player_id = (cur_player_id + 1) % 2;
                 Player another_player = players[another_player_id];
 
-                //if (deck.is_empty()) { break; }
-
-                AddLog("New card: ");
+                // get new card
                 Card card = deck.get_card();
-                AddLog(card.get_info());
                 cur_player.add_card(card);
                 AddLog($"Cards left: {deck.cards_left()}");
 
-                // play card from the hand
-                AddLog("Choose card from: ");
-                List<Card> current_cards = cur_player.cards;
-                for (int i = 0; i < current_cards.Count; ++i)
-                {
-                    AddLog($"{i}) ", current_cards[i].get_info());                    
-                }
                 show_players();
+                // waiting for click
             }
             else
             {
                 show_winner();
             }
+        }
+
+        public void lblCard_Click(object sender, EventArgs e)
+        {
+            Player cur_player = players[cur_player_id];
+            int another_player_id = (cur_player_id + 1) % 2;
+            Player another_player = players[another_player_id];
+
+            var cur_card = ((sender as Label).Tag as Card);
+            AddLog(cur_card.play(cur_player, another_player));
+            cur_player.cards.Remove(cur_card);
+
+            show_players();
+
+            cur_player_id = another_player_id;
+            ++round;
+            new_round(round);
         }
 
         bool end_game()
@@ -123,6 +133,7 @@ namespace Card_game
 
         void show_winner()
         {
+            AddLog();
             AddLog("End of game");
             bool winner_found = false;
             for (int i = 0; i < players.Count; ++i)

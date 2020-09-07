@@ -8,12 +8,10 @@ namespace Card_game
 {
     class Deck
     {
-        //int num_of_cards;
         List<Card> cards = new List<Card>();
 
         public Deck(int num_of_cards = 60)
         {
-            //this.num_of_cards = num_of_cards;
             CardGenerator card_gen = new CardGenerator();
 
             for (int i = 0; i < num_of_cards; ++i)

@@ -30,9 +30,6 @@
         {
             this.btnGo = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtInput = new System.Windows.Forms.TextBox();
-            this.btnNext = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblHp0 = new System.Windows.Forms.Label();
@@ -58,32 +55,6 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.Size = new System.Drawing.Size(546, 248);
             this.txtLog.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(653, 84);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Enter your choice";
-            // 
-            // txtInput
-            // 
-            this.txtInput.Location = new System.Drawing.Point(649, 111);
-            this.txtInput.Name = "txtInput";
-            this.txtInput.Size = new System.Drawing.Size(100, 20);
-            this.txtInput.TabIndex = 4;
-            // 
-            // btnNext
-            // 
-            this.btnNext.Location = new System.Drawing.Point(662, 137);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 5;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // label2
             // 
@@ -150,9 +121,6 @@
             this.Controls.Add(this.lblHp0);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.txtInput);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.btnGo);
             this.Name = "FormMain";
@@ -166,9 +134,6 @@
 
         private System.Windows.Forms.Button btnGo;
         public System.Windows.Forms.TextBox txtLog;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtInput;
-        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label lblHp0;
