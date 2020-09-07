@@ -33,6 +33,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtInput = new System.Windows.Forms.TextBox();
             this.btnNext = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblHp0 = new System.Windows.Forms.Label();
+            this.lblHp1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnGo
@@ -47,10 +51,10 @@
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(45, 84);
+            this.txtLog.Location = new System.Drawing.Point(46, 92);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
-            this.txtLog.Size = new System.Drawing.Size(546, 296);
+            this.txtLog.Size = new System.Drawing.Size(546, 248);
             this.txtLog.TabIndex = 2;
             // 
             // label1
@@ -79,11 +83,53 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(44, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Player 0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(43, 394);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Player 1";
+            // 
+            // lblHp0
+            // 
+            this.lblHp0.AutoSize = true;
+            this.lblHp0.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHp0.Location = new System.Drawing.Point(45, 43);
+            this.lblHp0.Name = "lblHp0";
+            this.lblHp0.Size = new System.Drawing.Size(29, 31);
+            this.lblHp0.TabIndex = 10;
+            this.lblHp0.Text = "0";
+            // 
+            // lblHp1
+            // 
+            this.lblHp1.AutoSize = true;
+            this.lblHp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblHp1.Location = new System.Drawing.Point(45, 354);
+            this.lblHp1.Name = "lblHp1";
+            this.lblHp1.Size = new System.Drawing.Size(29, 31);
+            this.lblHp1.TabIndex = 11;
+            this.lblHp1.Text = "0";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblHp1);
+            this.Controls.Add(this.lblHp0);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.txtInput);
             this.Controls.Add(this.label1);
@@ -103,6 +149,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lblHp0;
+        public System.Windows.Forms.Label lblHp1;
     }
 }
 

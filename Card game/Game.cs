@@ -18,9 +18,6 @@ namespace Card_game
         int cards_on_hand;
         public int round;
 
-        // try to fix random
-        //Random random = new Random();
-
         public Game(FormMain form, int num_of_players = 2, int cards_in_deck = 60)
         {
             // one random for all game
@@ -30,10 +27,12 @@ namespace Card_game
             deck = new Deck(cards_in_deck);
             cards_on_hand = 3;
 
+            var labelsHP = new List<System.Windows.Forms.Label>() { form.lblHp0, form.lblHp1 };            
+
             players = new List<Player>();
             for (int i = 0; i < num_of_players; ++i)
             {
-                Player player = new Player(i);
+                Player player = new Player(labelsHP[i], i);
 
                 // give start cards to each player
                 for (int j = 0; j < cards_on_hand; ++j)
@@ -64,7 +63,7 @@ namespace Card_game
         {            
             for (int i = 0; i < players.Count; ++i)
             {
-                AddLog(players[i].show());
+                players[i].show();
             }
         }
 
@@ -74,7 +73,7 @@ namespace Card_game
             AddLog("Game start");
 
             round = 0;
-            new_round(round);    
+            new_round(round);
         }
 
         public void new_round(int round)

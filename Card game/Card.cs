@@ -21,7 +21,6 @@ namespace Card_game
     class Attack : Card
     {
         int damage;
-        Random random = new Random(DateTime.Now.Millisecond);
 
         public Attack()
         {
@@ -43,7 +42,6 @@ namespace Card_game
     class Heal : Card
     {
         int healing;
-        Random random = new Random(DateTime.Now.Millisecond);
 
         public Heal()
         {
@@ -66,7 +64,6 @@ namespace Card_game
     {
         Deck deck;
         int amount;
-        Random random = new Random(DateTime.Now.Millisecond);
 
         public Draw(Deck deck)
         {
@@ -95,7 +92,6 @@ namespace Card_game
     class Drop : Card
     {
         int amount;
-        Random random = new Random(DateTime.Now.Millisecond);
 
         public Drop()
         {
@@ -122,8 +118,6 @@ namespace Card_game
 
     class CardGenerator
     {
-        Random random = new Random(DateTime.Now.Millisecond);
-
         public Card new_card(Deck deck)
         {
             int card_type = GameRandom.random.Next(10);

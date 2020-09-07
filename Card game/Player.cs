@@ -11,17 +11,16 @@ namespace Card_game
         public int id;
         int hp;
         public List<Card> cards = new List<Card>();
-        Random random = new Random(DateTime.Now.Millisecond);
-
         public Actions actions;
 
-        public Player(int id)
+        System.Windows.Forms.Label lblHp;
+
+        public Player(System.Windows.Forms.Label lblHp, int id)
         {
             this.id = id;
             hp = 10 + GameRandom.random.Next(10);
 
-            //damage = 1 + random.Next(5);
-            //healing = random.Next(5);
+            this.lblHp = lblHp;
 
             actions = new Actions(this);
         }
@@ -36,16 +35,6 @@ namespace Card_game
             return hp;
         }
 
-        //public int get_damage()
-        //{
-        //    return damage;
-        //}
-
-        //public int get_healing()
-        //{
-        //    return healing;
-        //}
-
         public void lose_hp(int n)
         {
             hp -= n;
@@ -56,16 +45,17 @@ namespace Card_game
             hp += n;
         }
 
-        public string show()
+        public void show()
         {
-            string message = "";
-            message += $"Player: {id}\n";
-            message += $"HP: {hp}\n";
-            foreach (Card card in cards)
-            {
-                message += card.show();
-            }
-            return message;
+            //string message = "";
+            //message += $"Player: {id}\n";
+            //message += $"HP: {hp}\n";
+            //foreach (Card card in cards)
+            //{
+            //    message += card.show();
+            //}
+            //return message;
+            lblHp.Text = hp.ToString();
         }
     }
 
