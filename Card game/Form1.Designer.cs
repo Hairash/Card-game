@@ -53,7 +53,7 @@
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(46, 98);
+            this.txtLog.Location = new System.Drawing.Point(46, 103);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.Size = new System.Drawing.Size(546, 248);
@@ -125,16 +125,18 @@
             // 
             // pnlCards0
             // 
-            this.pnlCards0.Location = new System.Drawing.Point(125, 10);
+            this.pnlCards0.AutoScroll = true;
+            this.pnlCards0.Location = new System.Drawing.Point(125, 6);
             this.pnlCards0.Name = "pnlCards0";
-            this.pnlCards0.Size = new System.Drawing.Size(467, 74);
+            this.pnlCards0.Size = new System.Drawing.Size(467, 90);
             this.pnlCards0.TabIndex = 12;
             // 
             // pnlCards1
             // 
-            this.pnlCards1.Location = new System.Drawing.Point(125, 362);
+            this.pnlCards1.AutoScroll = true;
+            this.pnlCards1.Location = new System.Drawing.Point(125, 356);
             this.pnlCards1.Name = "pnlCards1";
-            this.pnlCards1.Size = new System.Drawing.Size(467, 74);
+            this.pnlCards1.Size = new System.Drawing.Size(467, 90);
             this.pnlCards1.TabIndex = 13;
             // 
             // FormMain
