@@ -21,11 +21,11 @@ namespace Card_game
     class Attack : Card
     {
         int damage;
+        Random random = new Random(DateTime.Now.Millisecond);
 
         public Attack()
         {
-            Random random = new Random();
-            damage = 1 + random.Next(5);
+            damage = 1 + GameRandom.random.Next(5);
         }
 
         override public string play(Player owner, Player opponent)
@@ -43,11 +43,11 @@ namespace Card_game
     class Heal : Card
     {
         int healing;
+        Random random = new Random(DateTime.Now.Millisecond);
 
         public Heal()
         {
-            Random random = new Random();
-            healing = 1 + random.Next(4);
+            healing = 1 + GameRandom.random.Next(4);
         }
 
         override public string play(Player owner, Player opponent)
@@ -66,12 +66,12 @@ namespace Card_game
     {
         Deck deck;
         int amount;
+        Random random = new Random(DateTime.Now.Millisecond);
 
         public Draw(Deck deck)
         {
             this.deck = deck;
-            Random random = new Random();
-            amount = 2 + random.Next(3);
+            amount = 2 + GameRandom.random.Next(3);
         }
 
         override public string play(Player owner, Player opponent)
@@ -95,21 +95,20 @@ namespace Card_game
     class Drop : Card
     {
         int amount;
+        Random random = new Random(DateTime.Now.Millisecond);
 
         public Drop()
         {
-            Random random = new Random();
-            amount = 1 + random.Next(3);
+            amount = 1 + GameRandom.random.Next(3);
         }
 
         override public string play(Player owner, Player opponent)
         {
             int i;
-            Random random = new Random();
             for (i = 0; i < amount; ++i)
             {
                 if (opponent.cards.Count == 0) { break; }
-                var rand_id = random.Next(opponent.cards.Count);
+                var rand_id = GameRandom.random.Next(opponent.cards.Count);
                 opponent.cards.RemoveAt(rand_id);
             }
             return $"Player {opponent.id} drops {i} cards";
@@ -123,10 +122,11 @@ namespace Card_game
 
     class CardGenerator
     {
+        Random random = new Random(DateTime.Now.Millisecond);
+
         public Card new_card(Deck deck)
         {
-            Random random = new Random();
-            int card_type = random.Next(10);
+            int card_type = GameRandom.random.Next(10);
 
             Card card;
 

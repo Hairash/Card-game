@@ -11,16 +11,14 @@ namespace Card_game
         public int id;
         int hp;
         public List<Card> cards = new List<Card>();
-        //int damage;
-        //int healing;
+        Random random = new Random(DateTime.Now.Millisecond);
 
         public Actions actions;
 
         public Player(int id)
         {
             this.id = id;
-            Random random = new Random();
-            hp = 10 + random.Next(10);
+            hp = 10 + GameRandom.random.Next(10);
 
             //damage = 1 + random.Next(5);
             //healing = random.Next(5);

@@ -18,10 +18,14 @@ namespace Card_game
         int cards_on_hand;
         public int round;
 
-        // current state
+        // try to fix random
+        //Random random = new Random();
 
         public Game(FormMain form, int num_of_players = 2, int cards_in_deck = 60)
         {
+            // one random for all game
+            GameRandom.random = new Random();
+
             this.form = form;
             deck = new Deck(cards_in_deck);
             cards_on_hand = 3;
