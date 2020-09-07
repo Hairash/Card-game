@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Card_game
 {
@@ -51,7 +55,7 @@ namespace Card_game
             owner.add_hp(healing);
             Console.WriteLine($"Player {owner.id} gains {healing} hp");
         }
-        
+
         override public void show()
         {
             Console.WriteLine($"Healing card: {healing}");
@@ -104,9 +108,9 @@ namespace Card_game
             Random random = new Random();
             for (i = 0; i < amount; ++i)
             {
-                if (opponent.cards.Count == 0) { break; }                
+                if (opponent.cards.Count == 0) { break; }
                 var rand_id = random.Next(opponent.cards.Count);
-                opponent.cards.RemoveAt(rand_id);                
+                opponent.cards.RemoveAt(rand_id);
             }
             Console.WriteLine($"Player {opponent.id} drops {i} cards");
         }

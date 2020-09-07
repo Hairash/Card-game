@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Card_game
 {
@@ -37,5 +40,5 @@ namespace Card_game
         {
             return cards.Count;
         }
-    }    
+    }
 }

@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Card_game
 {
@@ -18,7 +21,7 @@ namespace Card_game
             this.id = id;
             Random random = new Random();
             hp = 10 + random.Next(10);
-            
+
             //damage = 1 + random.Next(5);
             //healing = random.Next(5);
 
@@ -56,7 +59,7 @@ namespace Card_game
         }
 
         public void show()
-        {            
+        {
             Console.WriteLine($"Player: {id}");
             Console.WriteLine($"HP: {hp}");
             foreach (Card card in cards)

@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Card_game
 {
-    class CardGame
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("\n\n\n\n\n\n\n------------------------");
-            Console.WriteLine("App start");
-            Game game = new Game(2);
-        }
-    }
-
     // TODO: Refactor
     // Make Card just a struct with different parameters (e.g. type)
     // Add .play_card() method to the Game
     class Game
     {
         List<Player> players;
-        Deck deck = new Deck(60);
+        Deck deck;
         int cur_player_id;
         int cards_on_hand;
-        
-        public Game(int num_of_players)
+
+        public Game(int num_of_players = 2, int cards_in_deck = 60)
         {
+            deck = new Deck(cards_in_deck);
             cards_on_hand = 3;
 
             players = new List<Player>();
@@ -69,7 +63,7 @@ namespace Card_game
             while (!end_game())
             {
                 Console.WriteLine($"Round: {round}. Player: {cur_player_id}");
-                
+
                 Player cur_player = players[cur_player_id];
                 int another_player_id = (cur_player_id + 1) % 2;
                 Player another_player = players[another_player_id];
@@ -116,12 +110,12 @@ namespace Card_game
                 show_players();
 
                 Console.WriteLine();
-                
+
                 cur_player_id = another_player_id;
                 ++round;
             }
 
-            show_winner();            
+            show_winner();
         }
 
         bool end_game()
@@ -144,7 +138,8 @@ namespace Card_game
             bool winner_found = false;
             for (int i = 0; i < players.Count; ++i)
             {
-                if (players[i].get_hp() <= 0) {
+                if (players[i].get_hp() <= 0)
+                {
                     Console.WriteLine($"Player {(i + 1) % 2} wins");
                     winner_found = true;
                 };
