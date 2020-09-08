@@ -37,6 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblHp0 = new System.Windows.Forms.Label();
             this.lblHp1 = new System.Windows.Forms.Label();
+            this.pnlCards0 = new System.Windows.Forms.Panel();
+            this.pnlCards1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // btnGo
@@ -51,7 +53,7 @@
             // 
             // txtLog
             // 
-            this.txtLog.Location = new System.Drawing.Point(46, 92);
+            this.txtLog.Location = new System.Drawing.Point(46, 98);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
             this.txtLog.Size = new System.Drawing.Size(546, 248);
@@ -86,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 22);
+            this.label2.Location = new System.Drawing.Point(43, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 8;
@@ -95,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(43, 394);
+            this.label3.Location = new System.Drawing.Point(43, 423);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 13);
             this.label3.TabIndex = 9;
@@ -105,7 +107,7 @@
             // 
             this.lblHp0.AutoSize = true;
             this.lblHp0.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHp0.Location = new System.Drawing.Point(45, 43);
+            this.lblHp0.Location = new System.Drawing.Point(44, 33);
             this.lblHp0.Name = "lblHp0";
             this.lblHp0.Size = new System.Drawing.Size(29, 31);
             this.lblHp0.TabIndex = 10;
@@ -115,17 +117,33 @@
             // 
             this.lblHp1.AutoSize = true;
             this.lblHp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHp1.Location = new System.Drawing.Point(45, 354);
+            this.lblHp1.Location = new System.Drawing.Point(45, 383);
             this.lblHp1.Name = "lblHp1";
             this.lblHp1.Size = new System.Drawing.Size(29, 31);
             this.lblHp1.TabIndex = 11;
             this.lblHp1.Text = "0";
+            // 
+            // pnlCards0
+            // 
+            this.pnlCards0.Location = new System.Drawing.Point(125, 10);
+            this.pnlCards0.Name = "pnlCards0";
+            this.pnlCards0.Size = new System.Drawing.Size(467, 74);
+            this.pnlCards0.TabIndex = 12;
+            // 
+            // pnlCards1
+            // 
+            this.pnlCards1.Location = new System.Drawing.Point(125, 362);
+            this.pnlCards1.Name = "pnlCards1";
+            this.pnlCards1.Size = new System.Drawing.Size(467, 74);
+            this.pnlCards1.TabIndex = 13;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pnlCards1);
+            this.Controls.Add(this.pnlCards0);
             this.Controls.Add(this.lblHp1);
             this.Controls.Add(this.lblHp0);
             this.Controls.Add(this.label3);
@@ -153,6 +171,8 @@
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label lblHp0;
         public System.Windows.Forms.Label lblHp1;
+        public System.Windows.Forms.Panel pnlCards0;
+        public System.Windows.Forms.Panel pnlCards1;
     }
 }
 

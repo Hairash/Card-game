@@ -13,14 +13,22 @@ namespace Card_game
         public List<Card> cards = new List<Card>();
         public Actions actions;
 
+        // hp display
         System.Windows.Forms.Label lblHp;
 
-        public Player(System.Windows.Forms.Label lblHp, int id)
+        // cards display
+        System.Windows.Forms.Panel pnlCards;
+        int card_x_start = 0;
+        int card_x_shift = Card.size_x + 10;
+        int card_y = 0;
+
+        public Player(System.Windows.Forms.Label lblHp, System.Windows.Forms.Panel pnlCards, int id)
         {
             this.id = id;
             hp = 10 + GameRandom.random.Next(10);
 
             this.lblHp = lblHp;
+            this.pnlCards = pnlCards;
 
             actions = new Actions(this);
         }
@@ -50,12 +58,31 @@ namespace Card_game
             //string message = "";
             //message += $"Player: {id}\n";
             //message += $"HP: {hp}\n";
-            //foreach (Card card in cards)
-            //{
-            //    message += card.show();
-            //}
+            
             //return message;
+
+            // show hp
             lblHp.Text = hp.ToString();
+
+            // show cards
+            pnlCards.Controls.Clear();
+            int x = card_x_start;
+            int y = card_y;
+            foreach (var card in cards)
+            {
+                show_card(card, x, y);
+                x += card_x_shift;
+            }
+        }
+
+        void show_card(Card card, int x, int y)
+        {
+            var lblCard = new System.Windows.Forms.Label();
+            lblCard.Text = card.get_info();
+            lblCard.Location = new System.Drawing.Point(x, y);
+            lblCard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            lblCard.Size = new System.Drawing.Size(Card.size_x, Card.size_y);
+            pnlCards.Controls.Add(lblCard);
         }
     }
 

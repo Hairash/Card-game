@@ -20,19 +20,17 @@ namespace Card_game
 
         public Game(FormMain form, int num_of_players = 2, int cards_in_deck = 60)
         {
-            // one random for all game
-            GameRandom.random = new Random();
-
             this.form = form;
             deck = new Deck(cards_in_deck);
             cards_on_hand = 3;
 
-            var labelsHP = new List<System.Windows.Forms.Label>() { form.lblHp0, form.lblHp1 };            
+            var labelsHP = new List<System.Windows.Forms.Label>() { form.lblHp0, form.lblHp1 };
+            var panelsCards = new List<System.Windows.Forms.Panel>() { form.pnlCards0, form.pnlCards1 };
 
             players = new List<Player>();
             for (int i = 0; i < num_of_players; ++i)
             {
-                Player player = new Player(labelsHP[i], i);
+                Player player = new Player(labelsHP[i], panelsCards[i], i);
 
                 // give start cards to each player
                 for (int j = 0; j < cards_on_hand; ++j)
@@ -60,7 +58,7 @@ namespace Card_game
         }
 
         public void show_players()
-        {            
+        {
             for (int i = 0; i < players.Count; ++i)
             {
                 players[i].show();
@@ -90,7 +88,7 @@ namespace Card_game
 
                 AddLog("New card: ");
                 Card card = deck.get_card();
-                AddLog(card.show());
+                AddLog(card.get_info());
                 cur_player.add_card(card);
                 AddLog($"Cards left: {deck.cards_left()}");
 
@@ -99,8 +97,9 @@ namespace Card_game
                 List<Card> current_cards = cur_player.cards;
                 for (int i = 0; i < current_cards.Count; ++i)
                 {
-                    AddLog($"{i}) ", current_cards[i].show());                    
+                    AddLog($"{i}) ", current_cards[i].get_info());                    
                 }
+                show_players();
             }
             else
             {

@@ -8,6 +8,6 @@ namespace Card_game
 {
     static class GameRandom
     {
-        public static Random random;
+        public static Random random = new Random();
     }
 }

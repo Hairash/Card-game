@@ -8,9 +8,11 @@ namespace Card_game
 {
     abstract class Card
     {
+        static public int size_x = 50;
+        static public int size_y = 70;
         public Card() { }
 
-        virtual public string show()
+        virtual public string get_info()
         {
             return "Card base show";
         }
@@ -33,7 +35,7 @@ namespace Card_game
             return $"Player {opponent.id} losses {damage} hp";
         }
 
-        override public string show()
+        override public string get_info()
         {
             return $"Attacking card: {damage}";
         }
@@ -54,7 +56,7 @@ namespace Card_game
             return $"Player {owner.id} gains {healing} hp";
         }
 
-        override public string show()
+        override public string get_info()
         {
             return $"Healing card: {healing}";
         }
@@ -83,7 +85,7 @@ namespace Card_game
             return $"Player {owner.id} draws {i} cards";
         }
 
-        override public string show()
+        override public string get_info()
         {
             return $"Draw card: {amount}";
         }
@@ -110,7 +112,7 @@ namespace Card_game
             return $"Player {opponent.id} drops {i} cards";
         }
 
-        override public string show()
+        override public string get_info()
         {
             return $"Drop card: {amount}";
         }
