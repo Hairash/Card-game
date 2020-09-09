@@ -93,6 +93,10 @@ namespace Card_game
                 AddLog($"Cards left: {deck.cards_left()}");
 
                 show_players();
+
+                // enable current players cards
+                cur_player.EnableCards();
+                another_player.DisableCards();
                 // waiting for click
             }
             else

@@ -82,6 +82,16 @@ namespace Card_game
             lblCard.Click += new System.EventHandler(game.lblCard_Click);
             pnlCards.Controls.Add(lblCard);
         }
+
+        public void EnableCards()
+        {
+            pnlCards.Enabled = true;
+        }
+
+        public void DisableCards()
+        {
+            pnlCards.Enabled = false;
+        }
     }
 
 
