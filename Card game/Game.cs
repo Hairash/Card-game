@@ -159,16 +159,18 @@ namespace Card_game
             // output winner
             AddLog();
             AddLog("End of game");
-            bool winner_found = false;
-            for (int i = 0; i < players.Count; ++i)
+            if (players[0].get_hp() > players[1].get_hp())
             {
-                if (players[i].get_hp() <= 0)
-                {
-                    AddLog($"Player {(i + 1) % 2} wins");
-                    winner_found = true;
-                };
+                AddLog("Player 0 wins");
             }
-            if (!winner_found) { AddLog("Draw"); }
+            else if (players[0].get_hp() < players[1].get_hp())
+            {
+                AddLog("Player 1 wins");
+            }
+            else
+            {
+                AddLog("Draw");
+            }
 
             // enable start button
             EnableStartButton();
