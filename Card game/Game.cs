@@ -89,6 +89,7 @@ namespace Card_game
                 // get new card
                 Card card = deck.get_card();
                 cur_player.add_card(card);
+                AddLog($"Player {cur_player_id} draws 1 card");
                 AddLog($"Cards left: {deck.cards_left()}");
 
                 show_players();
