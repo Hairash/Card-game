@@ -44,7 +44,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(75, 23);
             this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Start game";
+            this.btnStart.Text = "New game";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -61,24 +61,24 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(43, 12);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.Size = new System.Drawing.Size(63, 13);
             this.label2.TabIndex = 8;
-            this.label2.Text = "Player 0";
+            this.label2.Text = "Player 0 HP";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(43, 423);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 13);
+            this.label3.Size = new System.Drawing.Size(63, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Player 1";
+            this.label3.Text = "Player 1 HP";
             // 
             // lblHp0
             // 
             this.lblHp0.AutoSize = true;
             this.lblHp0.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHp0.Location = new System.Drawing.Point(44, 33);
+            this.lblHp0.Location = new System.Drawing.Point(53, 36);
             this.lblHp0.Name = "lblHp0";
             this.lblHp0.Size = new System.Drawing.Size(29, 31);
             this.lblHp0.TabIndex = 10;
@@ -88,7 +88,7 @@
             // 
             this.lblHp1.AutoSize = true;
             this.lblHp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblHp1.Location = new System.Drawing.Point(45, 383);
+            this.lblHp1.Location = new System.Drawing.Point(53, 379);
             this.lblHp1.Name = "lblHp1";
             this.lblHp1.Size = new System.Drawing.Size(29, 31);
             this.lblHp1.TabIndex = 11;
@@ -124,7 +124,7 @@
             this.Controls.Add(this.txtLog);
             this.Controls.Add(this.btnStart);
             this.Name = "FormMain";
-            this.Text = "FormMain";
+            this.Text = "Card Game";
             this.ResumeLayout(false);
             this.PerformLayout();
 

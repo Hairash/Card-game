@@ -22,6 +22,6 @@ namespace Card_game
         private void btnStart_Click(object sender, EventArgs e)
         {
             game = new Game(this);
-        }        
+        }
     }
 }
