@@ -19,7 +19,7 @@ namespace Card_game
             InitializeComponent();
         }
 
-        private void btnGo_Click(object sender, EventArgs e)
+        private void btnStart_Click(object sender, EventArgs e)
         {
             game = new Game(this);
         }        

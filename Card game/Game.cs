@@ -66,8 +66,20 @@ namespace Card_game
             }
         }
 
+        void EnableStartButton()
+        {
+            form.btnStart.Enabled = true;
+        }
+
+        void DisableStartButton()
+        {
+            form.btnStart.Enabled = false;
+        }
+
         void start()
         {
+            DisableStartButton();
+
             AddLog();
             AddLog("Game start");
 
@@ -77,7 +89,7 @@ namespace Card_game
 
         public void new_round(int round)
         {
-            if (!end_game())
+            if (!is_end_game())
             {
                 AddLog();
                 AddLog($"Round: {round}. Player: {cur_player_id}");
@@ -122,7 +134,7 @@ namespace Card_game
             new_round(round);
         }
 
-        bool end_game()
+        bool is_end_game()
         {
             if (deck.is_empty())
             {
@@ -138,6 +150,13 @@ namespace Card_game
 
         void show_winner()
         {
+            // disable all cards
+            foreach (var player in players)
+            {
+                player.DisableCards();
+            }
+
+            // output winner
             AddLog();
             AddLog("End of game");
             bool winner_found = false;
@@ -150,6 +169,9 @@ namespace Card_game
                 };
             }
             if (!winner_found) { AddLog("Draw"); }
+
+            // enable start button
+            EnableStartButton();
         }
     }
 }

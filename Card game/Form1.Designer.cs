@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnGo = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
             this.txtLog = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,15 +38,15 @@
             this.pnlCards1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // btnGo
+            // btnStart
             // 
-            this.btnGo.Location = new System.Drawing.Point(713, 12);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(75, 23);
-            this.btnGo.TabIndex = 0;
-            this.btnGo.Text = "Start game";
-            this.btnGo.UseVisualStyleBackColor = true;
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+            this.btnStart.Location = new System.Drawing.Point(713, 12);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(75, 23);
+            this.btnStart.TabIndex = 0;
+            this.btnStart.Text = "Start game";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // txtLog
             // 
@@ -122,7 +122,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtLog);
-            this.Controls.Add(this.btnGo);
+            this.Controls.Add(this.btnStart);
             this.Name = "FormMain";
             this.Text = "FormMain";
             this.ResumeLayout(false);
@@ -132,7 +132,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnGo;
+        public System.Windows.Forms.Button btnStart;
         public System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
