@@ -65,12 +65,11 @@ namespace Card_game
     class Draw : Card
     {
         Deck deck;
-        int amount;
+        int amount = 2;
 
         public Draw(Deck deck)
         {
             this.deck = deck;
-            amount = 2 + GameRandom.random.Next(3);
         }
 
         override public string play(Player owner, Player opponent)
@@ -118,27 +117,60 @@ namespace Card_game
         }
     }
 
+    class Change : Card
+    {
+        Deck deck;
+        int amount;
+
+        public Change(Deck deck, int amount)
+        {
+            this.deck = deck;
+            this.amount = amount;
+        }
+
+        override public string play(Player owner, Player opponent)
+        {
+            owner.cards.Clear();
+            int i;
+            for (i = 0; i < amount; ++i)
+            {
+                if (deck.is_empty()) { break; }
+                var card = deck.get_card();
+                owner.cards.Add(card);
+            }
+            return $"Player {owner.id} drops all cards and then draws {i} cards";
+        }
+
+        override public string get_info()
+        {
+            return $"Change card: {amount}";
+        }
+    }
+
     class CardGenerator
     {
-        public Card new_card(Deck deck)
+        public Card new_card(Deck deck, int cards_on_hand)
         {
-            int card_type = GameRandom.random.Next(10);
+            int card_type = GameRandom.random.Next(21);
 
             Card card;
 
             switch (card_type)
             {
-                case int n when n < 4:
+                case int n when n < 8:
                     card = new Attack();
                     break;
-                case int n when n < 8:
+                case int n when n < 16:
                     card = new Heal();
                     break;
-                case int n when n < 9:
+                case int n when n < 18:
                     card = new Draw(deck);
                     break;
-                default:
+                case int n when n < 20:
                     card = new Drop();
+                    break;
+                default:
+                    card = new Change(deck, cards_on_hand);
                     break;
             }
 

@@ -16,15 +16,14 @@ namespace Card_game
         public List<Player> players;
         Deck deck;
         public int cur_player_id;
-        int cards_on_hand;
+        int cards_on_hand = 3;
         public int round;
 
         public Game(FormMain form, int num_of_players = 2, int cards_in_deck = 60)
         {
             this.form = form;
-            deck = new Deck(cards_in_deck);
-            cards_on_hand = 3;
-
+            deck = new Deck(cards_in_deck, cards_on_hand);
+            
             var labelsHP = new List<System.Windows.Forms.Label>() { form.lblHp0, form.lblHp1 };
             var panelsCards = new List<System.Windows.Forms.Panel>() { form.pnlCards0, form.pnlCards1 };
 
@@ -43,7 +42,6 @@ namespace Card_game
                 players.Add(player);
             }
 
-            cur_player_id = 0;
             show_players();
 
             start();
@@ -83,6 +81,7 @@ namespace Card_game
             AddLog();
             AddLog("Game start");
 
+            cur_player_id = 0;
             round = 0;
             new_round(round);
         }

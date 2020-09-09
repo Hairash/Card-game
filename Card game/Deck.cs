@@ -10,13 +10,13 @@ namespace Card_game
     {
         List<Card> cards = new List<Card>();
 
-        public Deck(int num_of_cards = 60)
+        public Deck(int num_of_cards, int cards_on_hand)
         {
             CardGenerator card_gen = new CardGenerator();
 
             for (int i = 0; i < num_of_cards; ++i)
             {
-                Card card = card_gen.new_card(this);
+                Card card = card_gen.new_card(this, cards_on_hand);
                 cards.Add(card);
             }
         }
